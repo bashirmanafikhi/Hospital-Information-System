@@ -1,0 +1,46 @@
+
+
+<div class="row border-bottom m-2 p-4">
+    <div class="col-2">
+
+        <div *ngIf="patient.gender === 0; else female">
+            <img class="img-fluid img-thumbnail" src="https://cdn2.iconfinder.com/data/icons/virus-12/512/user_male_mask_medical_mask_healthcare_avatar-512.png" alt="">
+        </div>
+        
+        <ng-template #female>
+              <img class="img-fluid img-thumbnail" src="https://cdn2.iconfinder.com/data/icons/avatar-and-emotion-2/64/22-Medical_Mask-512.png" alt="">
+          </ng-template>
+
+
+
+    </div>
+    <div class="col-4">
+        <p class="text-primary text-uppercase font-weight-bold">Name: {{patient.name}}</p>
+        <p>fileNo: {{patient.fileNo}}</p>
+        <p>Citizen Id: {{patient.citizenId}}</p>
+        <p>Birthdate: {{patient.birthdate}}</p>
+        <p>gender: {{patient.gender}}</p>
+        <p>Natinality: {{patient.natinality}}</p>
+        <p>Phone Number: {{patient.phoneNumber}}</p>
+        <p>Email: {{patient.email}}</p>
+        <p>First Visit Date: {{patient.firstVisitDate}}</p>
+    </div>
+    <div class="col-4">
+        <p>Country: {{patient.country}}</p>
+        <p>City: {{patient.city}}</p>
+        <p>Street: {{patient.street}}</p>
+        <p>Address 1: {{patient.address1}}</p>
+        <p>Address 2: {{patient.address2}}</p>
+        <p>Contact Person: {{patient.contactPerson}}</p>
+        <p>Contact Relation: {{patient.contactRelation}}</p>
+        <p>Contact Phone: {{patient.contactPhone}}</p>
+        <p>Record Creation Date: {{patient.recordCreationDate}}</p>
+    </div>
+
+    <div class="col-2 d-grid gap-3">
+        <button class="btn btn-outline-primary" type="button" (click)="details()"><i class="far fa-eye"></i> Details</button>
+        <button class="btn btn-outline-primary" type="button" (click)="edit()"><i class="far fa-edit"></i> Edit</button>
+        <button class="btn btn-outline-danger" type="button" (click)="delete()"><i class="far fa-trash-alt"></i> Delete</button>
+      </div>
+
+</div>

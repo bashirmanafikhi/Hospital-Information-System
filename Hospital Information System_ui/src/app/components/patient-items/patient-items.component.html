@@ -1,0 +1,37 @@
+
+<div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+    <h1 class="display-4">Hospital Information System</h1>
+    <p class="lead">This is a very simple crud operations system , made by: Bashir Manafikhi.  ♥</p>
+  </div>
+
+
+<div class=" rounded border border-2 border-dark">
+
+    <app-patient-add 
+        (addEvent)="add($event)">
+
+    </app-patient-add>
+
+    <app-patient-filter 
+        [patientFilter]="patientFilter" 
+        (filterEvent)="filter($event)"
+        (clearFilterEvent)="clearFilter()">
+
+    </app-patient-filter>
+
+    <app-pagination 
+        [totalPages]="totalPages" 
+        [currentPage]="totalRecords"
+        [pagesize]="patientFilter.pageSize"
+        (pageChangedEvent)="pageChanged($event)">
+        
+    </app-pagination>
+
+    <app-patient-item 
+        *ngFor="let patient of patients" 
+        [patient]="patient" 
+        (deleteEvent)="delete($event)">
+
+    </app-patient-item>
+    
+</div>

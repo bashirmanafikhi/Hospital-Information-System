@@ -1,0 +1,18 @@
+<form class="row g-4 m-4 rounded border border-2 border-dark" (ngSubmit)="filter()">
+    <div class="col-auto">
+        <label for="staticName2" class="sr-only">Name</label>
+        <input type="text" class="form-control" id="staticName2" placeholder="Name"  [(ngModel)]="patientFilter.name" name="name">
+    </div>
+    <div class="col-auto">
+        <label for="inputFileNo2" class="sr-only">File No</label>
+        <input type="number" required min="1" class="form-control" id="inputFileNo2" placeholder="File No"  [(ngModel)]="patientFilter.fileNo" name="fileNo">
+    </div>
+    <div class="col-auto">
+        <label for="inputPhoneNumber2" class="sr-only">Phone Number</label>
+        <input type="text" class="form-control" id="inputPhoneNumber2" placeholder="Phone Number"  [(ngModel)]="patientFilter.phoneNumber" name="phoneNumber">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3"><i class="fas fa-search"></i> Filter</button>
+        <button type="button" class="btn btn-danger mb-3 mx-2" (click)="clearFilter()"><i class="fas fa-window-close"></i> clear</button>
+    </div>
+</form>
