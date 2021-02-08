@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PaginationFilter } from 'src/app/Filters/PaginationFilter';
 import { PatientFilter } from 'src/app/Filters/PatientFilter';
 import { Patient } from 'src/app/Models/Patient';
+import { ActivatedRoute } from '@angular/router';
 import { PatientService } from 'src/app/Services/patient.service';
 
 @Component({
@@ -11,28 +12,27 @@ import { PatientService } from 'src/app/Services/patient.service';
 })
 export class PatientItemsComponent implements OnInit {
 
-  totalPages : number;
-  totalRecords : number;
+  totalPages: number;
+  totalRecords: number;
 
   patientFilter: PatientFilter = new PatientFilter(1, 10, "", 0, "");
   patients: Patient[];
 
 
-  constructor(private patientService: PatientService) { }
 
-  // هدول منشان اجيب الباراميتر من الرابط مشان صفحات الباجينايشين
-  //   constructor(private activatedRt: ActivatedRoute){
-  //     this.activeRt.queryParams.subscribe(param => {
-  //     let param = param["my-param"];
-  //     let pageRequest = {
-  //      pageSize: 5,
-  //      pageIndex: param // if this is the page you are pulling from query param
-  //     }
-  //     this.changePage(pageRequest);
-  //   });
-  //  }
+  constructor(private patientService: PatientService, private activatedRt: ActivatedRoute) {
+    
+    // Getting pagenation parameters from url
+
+    // this.activatedRt.queryParams.subscribe(param => {
+    //   this.patientFilter.pageSize = param["pageSize"] ?? 10;
+    //   this.patientFilter.pageNumber = param["pageNumber"] ?? 1;
+    // });
+
+  }
 
   ngOnInit(): void {
+
 
     this.patientService.getPatients(this.patientFilter).subscribe(response => {
       this.patients = response.data;
@@ -45,8 +45,9 @@ export class PatientItemsComponent implements OnInit {
   delete(patient: Patient) {
     this.patientService.deletePatient(patient.id).subscribe(response => {
       if (response.succeeded) {
-        alert("patient with id: " + response.data + " has been deleted successfuly.");
+        //alert("patient with id: " + response.data + " has been deleted successfuly.");
         this.ngOnInit();
+
       }
     })
   }
@@ -72,10 +73,10 @@ export class PatientItemsComponent implements OnInit {
     this.ngOnInit();
   }
 
-  pageChanged(filter: PaginationFilter){
+  pageChanged(filter: PaginationFilter) {
     this.patientFilter.pageNumber = filter.pageNumber;
     this.patientFilter.pageSize = filter.pageSize;
-    
+
     //alert("page changed");
     this.ngOnInit();
   }

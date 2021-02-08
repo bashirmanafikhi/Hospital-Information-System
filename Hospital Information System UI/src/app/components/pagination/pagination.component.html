@@ -2,37 +2,41 @@
 
 
 
-    <div class="row">
+    <div class="row p-2">
         <div class="col-3">
-            <div class="form-group form-inline">
-                <label for="selectPageSize1">Page Size</label>
-                <select id="selectPageSize1" class="form-select form-control" (change)="onSelectChange($event.target.value)">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option selected value="10">10</option>
-                </select>
+
+            <div class="row">
+                <label for="selectPageSize1" class="col-sm-5 col-form-label">Page Size</label>
+                <div class="col-sm-7">
+                    <select id="selectPageSize1" class="form-select form-control"
+                        (change)="onSelectChange($event.target.value)">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option selected value="10">10</option>
+                    </select>
+                </div>
             </div>
+
         </div>
-        <div class="col-9">
-            <nav>
-                <ul class="pagination">
-                    <li class="page-item"><button class="page-link"
-                        (click)="previous()">Previous</button></li>
+
+
+        <div class="col-9  position-relative">
+            <nav class="position-absolute top-0 start-50 translate-middle-x">
+                <ul class="pagination text-center">
+                    <li class="page-item"><button class="page-link" (click)="previous()">Previous</button></li>
 
                     <li *ngFor="let item of pageNumbers" class="page-item">
-                        <button class="page-link"
-                            (click)="pageChanged(item)">{{item}}</button>
+                        <button class="page-link" (click)="pageChanged(item)">{{item}}</button>
                     </li>
 
-                    <li class="page-item"><button class="page-link"
-                        (click)="next()">Next</button></li>
+                    <li class="page-item"><button class="page-link" (click)="next()">Next</button></li>
                 </ul>
             </nav>
         </div>

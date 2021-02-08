@@ -1,46 +1,159 @@
-
-
 <div class="row border-bottom m-2 p-4">
     <div class="col-2">
 
         <div *ngIf="patient.gender === 0; else female">
-            <img class="img-fluid img-thumbnail" src="https://cdn2.iconfinder.com/data/icons/virus-12/512/user_male_mask_medical_mask_healthcare_avatar-512.png" alt="">
+            <img class="img-fluid img-thumbnail"
+                src="https://cdn2.iconfinder.com/data/icons/virus-12/512/user_male_mask_medical_mask_healthcare_avatar-512.png"
+                alt="">
         </div>
-        
+
         <ng-template #female>
-              <img class="img-fluid img-thumbnail" src="https://cdn2.iconfinder.com/data/icons/avatar-and-emotion-2/64/22-Medical_Mask-512.png" alt="">
-          </ng-template>
+            <img class="img-fluid img-thumbnail"
+                src="https://cdn2.iconfinder.com/data/icons/avatar-and-emotion-2/64/22-Medical_Mask-512.png" alt="">
+        </ng-template>
 
 
 
     </div>
     <div class="col-4">
-        <p class="text-primary text-uppercase font-weight-bold">Name: {{patient.name}}</p>
-        <p>fileNo: {{patient.fileNo}}</p>
-        <p>Citizen Id: {{patient.citizenId}}</p>
-        <p>Birthdate: {{patient.birthdate}}</p>
-        <p>gender: {{patient.gender}}</p>
-        <p>Natinality: {{patient.natinality}}</p>
-        <p>Phone Number: {{patient.phoneNumber}}</p>
-        <p>Email: {{patient.email}}</p>
-        <p>First Visit Date: {{patient.firstVisitDate}}</p>
+        <p><span class="fw-bold">Name:</span><span class="text-primary text-uppercase"> {{patient.name}}</span></p>
+        <p><span class="fw-bold">File No:</span> {{patient.fileNo}}</p>
+        <p><span class="fw-bold">Email:</span> {{patient.email}}</p>
     </div>
     <div class="col-4">
-        <p>Country: {{patient.country}}</p>
-        <p>City: {{patient.city}}</p>
-        <p>Street: {{patient.street}}</p>
-        <p>Address 1: {{patient.address1}}</p>
-        <p>Address 2: {{patient.address2}}</p>
-        <p>Contact Person: {{patient.contactPerson}}</p>
-        <p>Contact Relation: {{patient.contactRelation}}</p>
-        <p>Contact Phone: {{patient.contactPhone}}</p>
-        <p>Record Creation Date: {{patient.recordCreationDate}}</p>
+        <p><span class="fw-bold">Country:</span> {{patient.country}}</p>
+        <p><span class="fw-bold">City:</span> {{patient.city}}</p>
+        <p><span class="fw-bold">Street:</span> {{patient.street}}</p>
     </div>
 
     <div class="col-2 d-grid gap-3">
-        <button class="btn btn-outline-primary" type="button" (click)="details()"><i class="far fa-eye"></i> Details</button>
+        <button class="btn btn-outline-primary" type="button" (click)="details()" data-bs-toggle="modal"
+            data-bs-target="#patientDetailsModal"><i class="far fa-eye"></i> More Details</button>
         <button class="btn btn-outline-primary" type="button" (click)="edit()"><i class="far fa-edit"></i> Edit</button>
-        <button class="btn btn-outline-danger" type="button" (click)="delete()"><i class="far fa-trash-alt"></i> Delete</button>
+        <button class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal"><i class="far fa-trash-alt"></i>
+            Delete</button>
+    </div>
+
+
+    <!-- Modal Patient Details -->
+    <div class="modal fade" id="patientDetailsModal" tabindex="-1" aria-labelledby="patientDetailsModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="patientDetailsModalLabel">{{patient.name}}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Property</th>
+                                <th scope="col">Description</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row">Name</th>
+                                <td>{{patient.name}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">fileNo</th>
+                                <td>{{patient.fileNo}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Citizen Id</th>
+                                <td>{{patient.citizenId}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Birthdate</th>
+                                <td>{{patient.birthdate}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Gender</th>
+                                <td>{{patient.gender}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Natinality</th>
+                                <td>{{patient.natinality}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Phone Number</th>
+                                <td>{{patient.phoneNumber}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{{patient.email}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">First Visit Date</th>
+                                <td>{{patient.firstVisitDate}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Country</th>
+                                <td>{{patient.country}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">City</th>
+                                <td>{{patient.city}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Street</th>
+                                <td>{{patient.street}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address 1</th>
+                                <td>{{patient.address1}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Address 2</th>
+                                <td>{{patient.address2}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Contact Person</th>
+                                <td>{{patient.contactPerson}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Contact Relation</th>
+                                <td>{{patient.contactRelation}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Contact Phone</th>
+                                <td>{{patient.contactPhone}}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Record Creation Date</th>
+                                <td>{{patient.recordCreationDate}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  
+  <!-- Confirm Delete Modal -->
+  <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="confirmDeleteModalLabel">Delete Confirm</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            Do You Really Want To Delete {{patient.name}} ??
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger"  data-bs-dismiss="modal" (click)="delete()">Delete</button>        </div>
       </div>
+    </div>
+  </div>
+
 
 </div>

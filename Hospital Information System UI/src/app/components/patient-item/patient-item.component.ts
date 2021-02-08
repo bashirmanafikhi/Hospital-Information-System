@@ -20,7 +20,7 @@ export class PatientItemComponent implements OnInit {
   }
 
   details() {
-    alert("details patient with id = \n" + this.patient.id);
+    //alert("details patient with id = \n" + this.patient.id);
   }
 
   edit() {
