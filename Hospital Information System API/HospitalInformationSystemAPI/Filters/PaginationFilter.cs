@@ -19,5 +19,10 @@ namespace HospitalInformationSystemAPI.Filters
             this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
             this.PageSize = pageSize > 10 ? 10 : pageSize;
         }
+
+        public IQueryable<T> Paginate<T>(IQueryable<T> data)
+        {
+            return data.Skip((PageNumber - 1) * PageSize).Take(PageSize);
+        }
     }
 }

@@ -34,31 +34,24 @@ namespace HospitalInformationSystemAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] PatientFilter filter)
         {
-            var validFilter = new PatientFilter(filter);
+            try
+            {
+                var validFilter = new PatientFilter(filter);
 
+                var filteredData = validFilter.Filter(context.Patients.AsQueryable());
 
-            var filteredData = context.Patients.AsQueryable();
+                var totalRecords = await filteredData.CountAsync();
 
-            if (!string.IsNullOrWhiteSpace(validFilter.Name))
-                filteredData = filteredData.Where(p => p.Name.ToUpper().Contains(validFilter.Name.ToUpper()));
+                var pagedData = await validFilter.Paginate(filteredData).ToListAsync();
 
-            if (validFilter.FileNo > 0)
-                filteredData = filteredData.Where(p => p.FileNo == validFilter.FileNo);
+                var pagedResponse = new PagedResponse<List<Patient>>(pagedData, validFilter.PageNumber, validFilter.PageSize, totalRecords);
 
-            if (!string.IsNullOrWhiteSpace(validFilter.PhoneNumber))
-                filteredData = filteredData.Where(p => p.PhoneNumber.ToUpper().Contains(validFilter.PhoneNumber.ToUpper()));
-
-
-            var pagedData = await filteredData
-                .Skip((validFilter.PageNumber - 1) * validFilter.PageSize)
-                .Take(validFilter.PageSize)
-                .ToListAsync();
-
-            var totalRecords = await filteredData.CountAsync();
-
-            var pagedResponse = new PagedResponse<List<Patient>>(pagedData, validFilter.PageNumber, validFilter.PageSize, totalRecords);
-            
-            return Ok(pagedResponse);
+                return Ok(pagedResponse);
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error While Retriving Patient.");
+            }
         }
 
 
@@ -132,7 +125,6 @@ namespace HospitalInformationSystemAPI.Controllers
                 }
 
                 patient = mapper.Map<Patient>(patientRequest);
-
 
                 await context.SaveChangesAsync();
 
