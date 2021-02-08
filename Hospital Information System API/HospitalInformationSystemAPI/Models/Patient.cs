@@ -33,26 +33,5 @@ namespace HospitalInformationSystemAPI.Models
             this.RecordCreationDate = DateTime.Now;
         }
 
-
-        public void UpdateDetails(PatientRequest patientRequest)
-        {
-            this.Name = patientRequest.Name;
-            this.FileNo = patientRequest.FileNo;
-            this.CitizenId = patientRequest.CitizenId;
-            this.Birthdate = patientRequest.Birthdate;
-            this.Gender = patientRequest.Gender;
-            this.Natinality = patientRequest.Natinality;
-            this.PhoneNumber = patientRequest.PhoneNumber;
-            this.Email = patientRequest.Email;
-            this.Country = patientRequest.Country;
-            this.City = patientRequest.City;
-            this.Street = patientRequest.Street;
-            this.Address1 = patientRequest.Address1;
-            this.Address2 = patientRequest.Address2;
-            this.ContactPerson = patientRequest.ContactPerson;
-            this.ContactRelation = patientRequest.ContactRelation;
-            this.ContactPhone = patientRequest.ContactPhone;
-            this.FirstVisitDate = patientRequest.FirstVisitDate;
-        }
     }
 }

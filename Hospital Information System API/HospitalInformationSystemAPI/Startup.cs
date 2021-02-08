@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using HospitalInformationSystemAPI.Helpers;
 
 namespace HospitalInformationSystemAPI
 {
@@ -29,6 +31,10 @@ namespace HospitalInformationSystemAPI
             services.AddDbContext<ApplicationDbContext>();
 
             services.AddControllers();
+
+
+            // Auto Mapper Configurations
+            services.AddAutoMapper(c => c.AddProfile<MappingProfile>(), typeof(Startup));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

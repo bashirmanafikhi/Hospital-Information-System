@@ -1,4 +1,5 @@
-﻿using HospitalInformationSystemAPI.Filters;
+﻿using AutoMapper;
+using HospitalInformationSystemAPI.Filters;
 using HospitalInformationSystemAPI.Models;
 using HospitalInformationSystemAPI.Wrappers;
 using Microsoft.AspNetCore.Http;
@@ -18,10 +19,12 @@ namespace HospitalInformationSystemAPI.Controllers
     {
         #region Fields And Constructors
         private readonly ApplicationDbContext context;
+        private readonly IMapper mapper;
 
-        public PatientsController(ApplicationDbContext context)
+        public PatientsController(ApplicationDbContext context, IMapper mapper)
         {
             this.context = context;
+            this.mapper = mapper;
         }
         #endregion
 
@@ -92,9 +95,7 @@ namespace HospitalInformationSystemAPI.Controllers
                     return BadRequest();
                 }
 
-                Patient patient = new Patient();
-
-                patient.UpdateDetails(patientRequest);
+                var patient = mapper.Map<Patient>(patientRequest);
 
                 var patientId = await context.Patients.AddAsync(patient);
 
@@ -130,7 +131,8 @@ namespace HospitalInformationSystemAPI.Controllers
                     return NotFound($"Patient with Id = '{id}' is not found.");
                 }
 
-                patient.UpdateDetails(patientRequest);
+                patient = mapper.Map<Patient>(patientRequest);
+
 
                 await context.SaveChangesAsync();
 

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Bashir\\Desktop\\AngularProjects\\Hospital Information System API\\HospitalInformationSystemAPI\\HospitalInformationSystemAPI.csproj": {}
+    "C:\\Users\\Bashir\\Desktop\\Hospital Information System\\Hospital Information System API\\HospitalInformationSystemAPI\\HospitalInformationSystemAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Bashir\\Desktop\\AngularProjects\\Hospital Information System API\\HospitalInformationSystemAPI\\HospitalInformationSystemAPI.csproj": {
+    "C:\\Users\\Bashir\\Desktop\\Hospital Information System\\Hospital Information System API\\HospitalInformationSystemAPI\\HospitalInformationSystemAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Bashir\\Desktop\\AngularProjects\\Hospital Information System API\\HospitalInformationSystemAPI\\HospitalInformationSystemAPI.csproj",
+        "projectUniqueName": "C:\\Users\\Bashir\\Desktop\\Hospital Information System\\Hospital Information System API\\HospitalInformationSystemAPI\\HospitalInformationSystemAPI.csproj",
         "projectName": "HospitalInformationSystemAPI",
-        "projectPath": "C:\\Users\\Bashir\\Desktop\\AngularProjects\\Hospital Information System API\\HospitalInformationSystemAPI\\HospitalInformationSystemAPI.csproj",
+        "projectPath": "C:\\Users\\Bashir\\Desktop\\Hospital Information System\\Hospital Information System API\\HospitalInformationSystemAPI\\HospitalInformationSystemAPI.csproj",
         "packagesPath": "C:\\Users\\Bashir\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Bashir\\Desktop\\AngularProjects\\Hospital Information System API\\HospitalInformationSystemAPI\\obj\\",
+        "outputPath": "C:\\Users\\Bashir\\Desktop\\Hospital Information System\\Hospital Information System API\\HospitalInformationSystemAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",
@@ -45,6 +45,14 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[10.1.1, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[8.1.1, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[5.0.2, )"
