@@ -56,7 +56,7 @@ export class PatientItemsComponent implements OnInit {
 
     this.patientService.addPatient(patient).subscribe(response => {
       if (response.succeeded) {
-        //alert("patient " + response.data + " has been added");
+        //alert("patient " + response.data + " has been added successfuly.");
         this.ngOnInit();
       }
     })

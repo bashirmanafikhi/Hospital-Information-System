@@ -47,17 +47,17 @@ namespace HospitalInformationSystemAPI.Models
 
 
         [DataType(DataType.Text)]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "Country Should be minimum 2 characters and a maximum of 50 characters")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Country Should be minimum 1 characters and a maximum of 50 characters")]
         public string Country { get; set; }
 
 
         [DataType(DataType.Text)]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "City Should be minimum 2 characters and a maximum of 50 characters")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "City Should be minimum 1 characters and a maximum of 50 characters")]
         public string City { get; set; }
 
 
         [DataType(DataType.Text)]
-        [StringLength(50, MinimumLength = 2, ErrorMessage = "Street Should be minimum 2 characters and a maximum of 50 characters")]
+        [StringLength(50, MinimumLength = 1, ErrorMessage = "Street Should be minimum 1 characters and a maximum of 50 characters")]
         public string Street { get; set; }
 
 
@@ -71,7 +71,7 @@ namespace HospitalInformationSystemAPI.Models
 
         [Display(Name = "Contact Person")]
         [DataType(DataType.Text)]
-        [StringLength(100, MinimumLength = 3, ErrorMessage = "Contact Person Should be minimum 3 characters and a maximum of 100 characters")]
+        [StringLength(100, ErrorMessage = "Contact Person Should be maximum of 100 characters")]
         public string ContactPerson { get; set; }
 
 

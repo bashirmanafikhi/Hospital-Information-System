@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Patient } from 'src/app/Models/Patient';
+import { Gender } from 'src/app/Models/Gender';
 
 @Component({
   selector: 'app-patient-add',
@@ -8,10 +9,13 @@ import { Patient } from 'src/app/Models/Patient';
 })
 export class PatientAddComponent implements OnInit {
 
+  genderKeys =[0,1];
+  genderValues = Gender;
   patient:Patient;
   @Output() addEvent = new EventEmitter();
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.patient = new Patient("",1);
