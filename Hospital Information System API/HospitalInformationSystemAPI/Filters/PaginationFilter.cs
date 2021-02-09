@@ -16,13 +16,20 @@ namespace HospitalInformationSystemAPI.Filters
         }
         public PaginationFilter(int pageNumber, int pageSize)
         {
-            this.PageNumber = pageNumber < 1 ? 1 : pageNumber;
-            this.PageSize = pageSize > 10 ? 10 : pageSize;
+            this.PageNumber = pageNumber;
+            this.PageSize = pageSize;
+            validate();
         }
 
         public IQueryable<T> Paginate<T>(IQueryable<T> data)
         {
             return data.Skip((PageNumber - 1) * PageSize).Take(PageSize);
+        }
+
+        protected void validate()
+        {
+            PageNumber = PageNumber < 1 ? 1 : PageNumber;
+            PageSize = PageSize > 10 ? 10 : PageSize;
         }
     }
 }

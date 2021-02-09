@@ -5,14 +5,13 @@ using System.Threading.Tasks;
 
 namespace HospitalInformationSystemAPI.Models
 {
-    public class Patient
+    public class Patient : ModelBase
     {
-        public Guid Id { get; set; }
         public string Name { get; set; }
         public int FileNo { get; set; }
         public string CitizenId { get; set; }
         public DateTime Birthdate { get; set; }
-        public byte Gender { get; set; }
+        public Gender Gender { get; set; }
         public string Natinality { get; set; }
         public string PhoneNumber { get; set; }
         public string Email { get; set; }
@@ -25,13 +24,5 @@ namespace HospitalInformationSystemAPI.Models
         public string ContactRelation { get; set; }
         public string ContactPhone { get; set; }
         public DateTime FirstVisitDate { get; set; }
-        public DateTime RecordCreationDate { get; set; }
-
-        public Patient()
-        {
-            this.Id = Guid.NewGuid();
-            this.RecordCreationDate = DateTime.Now;
-        }
-
     }
 }

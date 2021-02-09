@@ -13,6 +13,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using HospitalInformationSystemAPI.Helpers;
+using HospitalInformationSystemAPI.Repositories;
 
 namespace HospitalInformationSystemAPI
 {
@@ -28,13 +29,16 @@ namespace HospitalInformationSystemAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Application context
             services.AddDbContext<ApplicationDbContext>();
-
-            services.AddControllers();
-
 
             // Auto Mapper Configurations
             services.AddAutoMapper(c => c.AddProfile<MappingProfile>(), typeof(Startup));
+
+            // Dependency injection
+            services.AddScoped<IRepository<Patient>, SQLRepository<Patient>>();
+
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

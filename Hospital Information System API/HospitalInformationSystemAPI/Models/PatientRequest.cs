@@ -13,7 +13,7 @@ namespace HospitalInformationSystemAPI.Models
         [DataType(DataType.Text)]
         public string Name { get; set; }
 
-
+        [Required(ErrorMessage = "File Number is required")]
         [Range(1, int.MaxValue)]
         [Display(Name = "File No")]
         public int FileNo { get; set; }
@@ -28,8 +28,8 @@ namespace HospitalInformationSystemAPI.Models
 
 
 
-        [Range(0,1, ErrorMessage = "Gender should be 0 for male or 1 for female.")]
-        public byte Gender { get; set; }
+        [Range(0,1, ErrorMessage = "Gender should be either 0 for male or 1 for female.")]
+        public Gender Gender { get; set; }
 
 
         [DataType(DataType.Text)]
@@ -47,14 +47,17 @@ namespace HospitalInformationSystemAPI.Models
 
 
         [DataType(DataType.Text)]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Country Should be minimum 2 characters and a maximum of 50 characters")]
         public string Country { get; set; }
 
 
         [DataType(DataType.Text)]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "City Should be minimum 2 characters and a maximum of 50 characters")]
         public string City { get; set; }
 
 
         [DataType(DataType.Text)]
+        [StringLength(50, MinimumLength = 2, ErrorMessage = "Street Should be minimum 2 characters and a maximum of 50 characters")]
         public string Street { get; set; }
 
 

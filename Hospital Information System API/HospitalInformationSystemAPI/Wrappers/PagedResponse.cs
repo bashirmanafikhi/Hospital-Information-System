@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HospitalInformationSystemAPI.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -13,13 +14,13 @@ namespace HospitalInformationSystemAPI.Wrappers
         public int TotalPages { get; set; }
         public int TotalRecords { get; set; }
 
-        public PagedResponse(T data, int pageNumber, int pageSize, int totalRecords) : base(data)
+        public PagedResponse(T data, PaginationFilter filter, int totalRecords) : base(data)
         {
-            this.PageNumber = pageNumber;
-            this.PageSize = pageSize;
+            this.PageNumber = filter.PageNumber;
+            this.PageSize = filter.PageSize;
 
             this.TotalRecords = totalRecords;
-            this.TotalPages = totalRecords / pageSize + (totalRecords % pageSize > 0 ? 1 : 0);
+            this.TotalPages = totalRecords / this.PageSize + (totalRecords % this.PageSize > 0 ? 1 : 0);
         }
     }
 }

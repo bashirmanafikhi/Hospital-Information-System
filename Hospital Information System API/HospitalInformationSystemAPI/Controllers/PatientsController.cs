@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using HospitalInformationSystemAPI.Filters;
+using HospitalInformationSystemAPI.Helpers;
 using HospitalInformationSystemAPI.Models;
+using HospitalInformationSystemAPI.Repositories;
 using HospitalInformationSystemAPI.Wrappers;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,40 +19,32 @@ namespace HospitalInformationSystemAPI.Controllers
     [ApiController]
     public class PatientsController : Controller
     {
-        #region Fields And Constructors
-        private readonly ApplicationDbContext context;
+        private readonly IRepository<Patient> repository;
         private readonly IMapper mapper;
 
-        public PatientsController(ApplicationDbContext context, IMapper mapper)
+        public PatientsController(IRepository<Patient> repository, IMapper mapper)
         {
-            this.context = context;
+            this.repository = repository;
             this.mapper = mapper;
         }
-        #endregion
-
-        #region Actions
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAll([FromQuery] PatientFilter filter)
+        public async Task<IActionResult> GetFiltered([FromQuery] PatientFilter filter)
         {
             try
             {
-                var validFilter = new PatientFilter(filter);
+                var patients = await repository.GetFiltered(filter);
 
-                var filteredData = validFilter.Filter(context.Patients.AsQueryable());
+                var totalRecords = await repository.Count();
 
-                var totalRecords = await filteredData.CountAsync();
-
-                var pagedData = await validFilter.Paginate(filteredData).ToListAsync();
-
-                var pagedResponse = new PagedResponse<List<Patient>>(pagedData, validFilter.PageNumber, validFilter.PageSize, totalRecords);
+                var pagedResponse = new PagedResponse<IEnumerable<Patient>>(patients, filter, totalRecords);
 
                 return Ok(pagedResponse);
             }
             catch (Exception)
             {
-                return StatusCode(StatusCodes.Status500InternalServerError, "Error While Retriving Patient.");
+                return StatusCode(StatusCodes.Status500InternalServerError, "Error While Retriving Patients.");
             }
         }
 
@@ -61,7 +55,7 @@ namespace HospitalInformationSystemAPI.Controllers
         {
             try
             {
-                Patient patient = await context.Patients.Where(a => a.Id == id).FirstOrDefaultAsync();
+                var patient = await repository.Get(id);
 
                 var response = new Response<Patient>(patient);
 
@@ -74,27 +68,19 @@ namespace HospitalInformationSystemAPI.Controllers
         }
 
 
-
-
-
         [HttpPost]
         public async Task<IActionResult> Post(PatientRequest patientRequest)
         {
             try
             {
-                // add validate
-                if (patientRequest == null || !ModelState.IsValid)
-                {
+                if (!ModelState.IsValid || patientRequest == null)
                     return BadRequest();
-                }
 
                 var patient = mapper.Map<Patient>(patientRequest);
 
-                var patientId = await context.Patients.AddAsync(patient);
+                patient = await repository.Add(patient);
 
-                await context.SaveChangesAsync();
-
-                var response = new Response<Guid>(patientId.Entity.Id);
+                var response = new Response<Guid>(patient.Id);
 
                 return Ok(response);
             }
@@ -111,24 +97,14 @@ namespace HospitalInformationSystemAPI.Controllers
         {
             try
             {
-                // add validate
-                if (patientRequest == null || !ModelState.IsValid)
-                {
+                if (!ModelState.IsValid || patientRequest == null)
                     return BadRequest();
-                }
 
-                var patient = await context.Patients.FirstOrDefaultAsync(p => p.Id == id);
+                var patient = mapper.Map<Patient>(patientRequest);
 
-                if (patient == null)
-                {
-                    return NotFound($"Patient with Id = '{id}' is not found.");
-                }
+                patient = await repository.Update(id, patient);
 
-                patient = mapper.Map<Patient>(patientRequest);
-
-                await context.SaveChangesAsync();
-
-                var response = new Response<Patient>(patient);
+                var response = new Response<Guid>(patient.Id);
 
                 return Ok(response);
             }
@@ -145,16 +121,7 @@ namespace HospitalInformationSystemAPI.Controllers
         {
             try
             {
-                var patient = await context.Patients.FirstOrDefaultAsync(p => p.Id == id);
-
-                if (patient == null)
-                {
-                    return NotFound($"Patient with Id = '{id}' is not found.");
-                }
-
-                context.Patients.Remove(patient);
-
-                await context.SaveChangesAsync();
+                var patient = await repository.Delete(id);
 
                 var response = new Response<Guid>(patient.Id);
 
@@ -167,7 +134,5 @@ namespace HospitalInformationSystemAPI.Controllers
         }
 
 
-
-        #endregion
     }
 }
