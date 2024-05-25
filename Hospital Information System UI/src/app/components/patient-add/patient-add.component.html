@@ -21,11 +21,9 @@
 
 
   <!-- Modal -->
-
   <form>
-
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
+      <div class="modal-dialog  modal-lg">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Add New Patient</h5>
@@ -33,121 +31,157 @@
           </div>
           <div class="modal-body">
 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="exampleInputName1" class="form-label">Name address</label>
+                  <input type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp"
+                    [(ngModel)]="patient.name" name="Name">
+                  <div id="nameHelp" class="form-text">this field is required.</div>
+                </div>
+              </div>
 
-
-
-            <div class="mb-3">
-              <label for="exampleInputName1" class="form-label">Name address</label>
-              <input type="text" class="form-control" id="exampleInputName1" aria-describedby="nameHelp"
-                [(ngModel)]="patient.name" name="Name">
-              <div id="nameHelp" class="form-text">this field is required.</div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="exampleInputFileNo1" class="form-label">FileNo</label>
+                  <input type="number" class="form-control" min="1" value="1" required="true" id="exampleInputFileNo1"
+                    [(ngModel)]="patient.fileNo" name="FileNo">
+                </div>
+              </div>
             </div>
 
-            <div class="mb-3">
-              <label for="exampleInputFileNo1" class="form-label">FileNo</label>
-              <input type="number" class="form-control" min="1" value="1" required="true" id="exampleInputFileNo1"
-                [(ngModel)]="patient.fileNo" name="FileNo">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="CitizenId" class="form-label">CitizenId</label>
+                  <input type="text" class="form-control" id="CitizenId" [(ngModel)]="patient.citizenId"
+                    name="citizenId">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="birthdate" class="form-label">birthdate</label>
+                  <input type="date" class="form-control" id="birthdate" [(ngModel)]="patient.birthdate"
+                    name="birthdate">
+                </div>
+              </div>
             </div>
 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="gender" class="form-label">gender</label>
+                  <select id="gender" class="form-select form-control" [(ngModel)]="patient.gender" name="gender"
+                    value='0'>
+                    <option *ngFor="let key of genderKeys" [ngValue]="key"> {{genderValues[key]}} </option>
+                  </select>
+                </div>
+              </div>
 
-            <div class="mb-3">
-              <label for="CitizenId" class="form-label">CitizenId</label>
-              <input type="text" class="form-control" id="CitizenId" [(ngModel)]="patient.citizenId" name="citizenId">
-            </div>
-
-
-            <div class="mb-3">
-              <label for="birthdate" class="form-label">birthdate</label>
-              <input type="date" class="form-control" id="birthdate" [(ngModel)]="patient.birthdate" name="birthdate">
-            </div>
-
-            
-            <!-- <div class="mb-3">
-              <label for="gender" class="form-label">gender</label>
-              <input type="number" min="0" max="1" class="form-control" id="gender" [(ngModel)]="patient.gender" name="gender"  aria-describedby="genderHelp">
-              <div id="genderHelp" class="form-text">Please select 0 for males and 1 for females.</div>
-            </div> -->
-
-
-            <div class="mb-3">
-              <label for="gender" class="form-label">gender</label>
-              <select id="gender" class="form-select form-control" [(ngModel)]="patient.gender" name="gender" value='0'>
-                <option *ngFor="let key of genderKeys" [ngValue]="key"> {{genderValues[key]}} </option>
-              </select>
-            </div>
-
-
-            <div class="mb-3">
-              <label for="natinality" class="form-label">natinality</label>
-              <input type="text" class="form-control" id="natinality" [(ngModel)]="patient.natinality"
-                name="natinality">
-            </div>
-
-            <div class="mb-3">
-              <label for="phoneNumber" class="form-label">phoneNumber</label>
-              <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="patient.phoneNumber"
-                name="phoneNumber">
-            </div>
-
-            <div class="mb-3">
-              <label for="email" class="form-label">email</label>
-              <input type="text" class="form-control" id="email" [(ngModel)]="patient.email" name="email">
-            </div>
-
-            <div class="mb-3">
-              <label for="country" class="form-label">country</label>
-              <input type="text" class="form-control" id="country" [(ngModel)]="patient.country" name="country">
-            </div>
-
-            <div class="mb-3">
-              <label for="city" class="form-label">city</label>
-              <input type="text" class="form-control" id="city" [(ngModel)]="patient.city" name="city">
-            </div>
-
-            <div class="mb-3">
-              <label for="street" class="form-label">street</label>
-              <input type="text" class="form-control" id="street" [(ngModel)]="patient.street" name="street">
-            </div>
-
-            <div class="mb-3">
-              <label for="address1" class="form-label">address1</label>
-              <input type="text" class="form-control" id="address1" [(ngModel)]="patient.address1" name="address1">
-            </div>
-
-            <div class="mb-3">
-              <label for="address2" class="form-label">address2</label>
-              <input type="text" class="form-control" id="address2" [(ngModel)]="patient.address2" name="address2">
-            </div>
-
-            <div class="mb-3">
-              <label for="contactPerson" class="form-label">contactPerson</label>
-              <input type="text" class="form-control" id="contactPerson" [(ngModel)]="patient.contactPerson"
-                name="contactPerson">
-            </div>
-
-            <div class="mb-3">
-              <label for="contactRelation" class="form-label">contactRelation</label>
-              <input type="text" class="form-control" id="contactRelation" [(ngModel)]="patient.contactRelation"
-                name="contactRelation">
-            </div>
-
-            <div class="mb-3">
-              <label for="contactPhone" class="form-label">contactPhone</label>
-              <input type="text" class="form-control" id="contactPhone" [(ngModel)]="patient.contactPhone"
-                name="contactPhone">
-            </div>
-
-            <div class="mb-3">
-              <label for="firstVisitDate" class="form-label">firstVisitDate</label>
-              <input type="date" class="form-control" id="firstVisitDate" [(ngModel)]="patient.firstVisitDate"
-                name="firstVisitDate">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="natinality" class="form-label">natinality</label>
+                  <input type="text" class="form-control" id="natinality" [(ngModel)]="patient.natinality"
+                    name="natinality">
+                </div>
+              </div>
             </div>
 
 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="phoneNumber" class="form-label">phoneNumber</label>
+                  <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="patient.phoneNumber"
+                    name="phoneNumber">
+                </div>
+              </div>
 
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="email" class="form-label">email</label>
+                  <input type="text" class="form-control" id="email" [(ngModel)]="patient.email" name="email">
+                </div>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="country" class="form-label">country</label>
+                  <input type="text" class="form-control" id="country" [(ngModel)]="patient.country" name="country">
+                </div>
+              </div>
 
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="city" class="form-label">city</label>
+                  <input type="text" class="form-control" id="city" [(ngModel)]="patient.city" name="city">
+                </div>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="street" class="form-label">street</label>
+                  <input type="text" class="form-control" id="street" [(ngModel)]="patient.street" name="street">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="address1" class="form-label">address1</label>
+                  <input type="text" class="form-control" id="address1" [(ngModel)]="patient.address1" name="address1">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="address2" class="form-label">address2</label>
+                  <input type="text" class="form-control" id="address2" [(ngModel)]="patient.address2" name="address2">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="contactPerson" class="form-label">contactPerson</label>
+                  <input type="text" class="form-control" id="contactPerson" [(ngModel)]="patient.contactPerson"
+                    name="contactPerson">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="contactRelation" class="form-label">contactRelation</label>
+                  <input type="text" class="form-control" id="contactRelation" [(ngModel)]="patient.contactRelation"
+                    name="contactRelation">
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="contactPhone" class="form-label">contactPhone</label>
+                  <input type="text" class="form-control" id="contactPhone" [(ngModel)]="patient.contactPhone"
+                    name="contactPhone">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="firstVisitDate" class="form-label">firstVisitDate</label>
+                  <input type="date" class="form-control" id="firstVisitDate" [(ngModel)]="patient.firstVisitDate"
+                    name="firstVisitDate">
+                </div>
+              </div>
+            </div>
 
 
           </div>
@@ -159,6 +193,6 @@
         </div>
       </div>
     </div>
-
   </form>
+
 </div>
