@@ -47,15 +47,8 @@ The Angular frontend provides a user-friendly interface for interacting with the
 
 ### Screenshots
 
-![Patients List](./images/2.png)
-*Figure 1: Patients List Page*
+| ![Patients List](./images/2.png) *Figure 1: Patients List Page* | ![Add Patient](./images/3.png) *Figure 2: Add Patient Form* |
+|------------------------------------------------------------------|-------------------------------------------------------------|
+| ![Patient Details](./images/1.png) *Figure 3: Patient Details*  | ![Patient Delete Alert](./images/4.png) *Figure 4: Patient Delete Alert* |
 
-![Add Patient](./images/3.png)
-*Figure 2: Add Patient Form*
-
-![Patient Details](./images/1.png)
-*Figure 3: Patient Details*
-
-![Patient Delete Alert](./images/4.png)
-*Figure 3: Patient Delete Alert*
 
