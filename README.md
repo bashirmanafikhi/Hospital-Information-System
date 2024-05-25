@@ -27,20 +27,6 @@ This project was developed in early *2021*
 
 The Angular frontend provides a user-friendly interface for interacting with the Hospital Information System. It allows users to view patient records, add new patients, and delete existing ones.
 
-### Screenshots
-
-![Patients List](./images/2.png)
-*Figure 1: Patients List Page*
-
-![Add Patient](./images/3.png)
-*Figure 2: Add Patient Form*
-
-![Patient Details](./images/1.png)
-*Figure 3: Patient Details*
-
-![Patient Delete Alert](./images/4.png)
-*Figure 3: Patient Delete Alert*
-
 ## Installation
 
 ### Prerequisites
@@ -58,4 +44,18 @@ The Angular frontend provides a user-friendly interface for interacting with the
 5. Navigate to the frontend directory: `cd Hospital Information System UI`
 6. Install dependencies: `npm install`
 7. Run the frontend server: `ng serve`
+
+### Screenshots
+
+![Patients List](./images/2.png)
+*Figure 1: Patients List Page*
+
+![Add Patient](./images/3.png)
+*Figure 2: Add Patient Form*
+
+![Patient Details](./images/1.png)
+*Figure 3: Patient Details*
+
+![Patient Delete Alert](./images/4.png)
+*Figure 3: Patient Delete Alert*
 
